@@ -1,0 +1,12 @@
+#
+#   Refer for explanation to following link:
+#   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+#
+pre-commit:
+  commands:
+    oxlint:
+      glob: "*.{js,ts}"
+      run: pnpm oxlint --fix {staged_files}
+    prettier:
+      glob: "*.{js,json,md,svelte,ts,yaml,yml}"
+      run: pnpm prettier --write {staged_files}

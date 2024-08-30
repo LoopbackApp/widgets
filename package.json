@@ -1,0 +1,22 @@
+{
+  "name": "@loopback/widgets",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "build": "pnpm run --parallel build",
+    "changeset": "changeset",
+    "changeset:publish": "changeset publish",
+    "changeset:version": "changeset version && pnpm install --lockfile-only",
+    "dev": "pnpm run --parallel dev"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.27.7"
+  },
+  "devDependencies": {
+    "lefthook": "^1.7.14",
+    "oxlint": "^0.9.1",
+    "prettier": "^3.3.3"
+  }
+}
