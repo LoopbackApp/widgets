@@ -1,3 +1,5 @@
+import { LoopbackWidget } from "@/lib";
+
 export function App() {
-	return <p>App</p>;
+	return <LoopbackWidget />
 }
