@@ -3,20 +3,44 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLoader2, IconSend } from "@tabler/icons-react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import { emotions } from "./constants";
 import { WidgetFormType, widgetSchema } from "./schema";
+import { FailedMessage, SuccessMessage } from "./Status";
 
 export function LoopbackWidget() {
+	const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
 	return (
 		<div className="lb-m-auto loopback-root lb-max-w-md lb-rounded-2xl lb-space-y-6 lb-px-6 lb-py-8">
-			<p className="lb-text-center lb-font-bold lb-text-black">Leave feedback</p>
-			<WidgetForm />
+			{submitSuccess === true && <SuccessMessage />}
+			{submitSuccess === false && <FailedMessage />}
+
+			{submitSuccess === null && (
+				<>
+					<p className="lb-text-center lb-font-bold lb-text-black">Leave feedback</p>
+					<WidgetForm setSuccess={setSubmitSuccess} />
+				</>
+			)}
+			<p className="lb-text-[0.6rem] lb-text-center">
+				Powered by{" "}
+				<a
+					rel="noopener noreferrer"
+					target="_blank"
+					href="https://loopback.works/"
+					className="lb-font-bold"
+				>
+					Loopback
+				</a>
+			</p>
 		</div>
 	);
 }
 
-function WidgetForm() {
+type WidgetFormProps = {
+	setSuccess: Dispatch<SetStateAction<boolean | null>>;
+};
+function WidgetForm({ setSuccess }: WidgetFormProps) {
 	const form = useForm<WidgetFormType>({ resolver: zodResolver(widgetSchema) });
 
 	async function submitFeedback(data: WidgetFormType) {
@@ -33,11 +57,17 @@ function WidgetForm() {
 			},
 			body: JSON.stringify(feedback),
 		});
+		console.log(res.ok);
 		if (res.ok) {
-			form.reset();
-			return;
+			setSuccess(true);
+		} else {
+			setSuccess(false);
 		}
-		alert("Failed to submit feedback");
+		form.reset();
+
+		setTimeout(() => {
+			setSuccess(null);
+		}, 5000);
 	}
 
 	return (
@@ -51,17 +81,6 @@ function WidgetForm() {
 					</div>
 				)}
 			</form>
-			<p className="lb-text-xs lb-text-center">
-				Powered by{" "}
-				<a
-					rel="noopener noreferrer"
-					target="_blank"
-					href="https://loopback.works/"
-					className="lb-font-bold"
-				>
-					Loopback
-				</a>
-			</p>
 		</FormProvider>
 	);
 }
