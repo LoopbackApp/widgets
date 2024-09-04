@@ -1,35 +1,16 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { IconMoodEmpty, IconMoodHappy, IconMoodSad } from "@tabler/icons-react";
+import { IconLoader2, IconSend } from "@tabler/icons-react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
+import { emotions } from "./constants";
 import { WidgetFormType, widgetSchema } from "./schema";
-
-const emotions = [
-	{
-		value: "bad",
-		icon: IconMoodSad,
-		className: "lb-bg-red-100 lb-text-red-900",
-		hover: "hover:lb-bg-red-100 hover:lb-text-red-900",
-	},
-	{
-		value: "neutral",
-		icon: IconMoodEmpty,
-		className: "lb-bg-amber-100 lb-text-amber-900",
-		hover: "hover:lb-bg-amber-100 hover:lb-text-amber-900",
-	},
-	{
-		value: "good",
-		icon: IconMoodHappy,
-		className: "lb-bg-green-100 lb-text-green-900",
-		hover: "hover:lb-bg-green-100 hover:lb-text-green-900",
-	},
-];
 
 export function LoopbackWidget() {
 	return (
-		<div className="lb-m-auto lb-max-w-md lb-rounded-2xl lb-space-y-6 lb-px-6 lb-py-8">
-			<p className="lb-text-center lb-font-bold lb-text-black dark:lb-text-white">
-				Was this helpful?
-			</p>
+		<div className="lb-m-auto loopback-root lb-max-w-md lb-rounded-2xl lb-space-y-6 lb-px-6 lb-py-8">
+			<p className="lb-text-center lb-font-bold lb-text-black">Leave feedback</p>
 			<WidgetForm />
 		</div>
 	);
@@ -38,9 +19,30 @@ export function LoopbackWidget() {
 function WidgetForm() {
 	const form = useForm<WidgetFormType>({ resolver: zodResolver(widgetSchema) });
 
+	async function submitFeedback(data: WidgetFormType) {
+		const feedback = {
+			emotion: data.emotion,
+			note: data.note,
+			email: data.email,
+		};
+
+		const res = await fetch("tbd", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(feedback),
+		});
+		if (res.ok) {
+			form.reset();
+			return;
+		}
+		alert("Failed to submit feedback");
+	}
+
 	return (
 		<FormProvider {...form}>
-			<form onSubmit={form.handleSubmit((e) => console.log(e))} className="lb-space-y-6">
+			<form onSubmit={form.handleSubmit(submitFeedback)} className="lb-space-y-6">
 				{!!form.watch("emotion") ? (
 					<UserInput />
 				) : (
@@ -49,6 +51,17 @@ function WidgetForm() {
 					</div>
 				)}
 			</form>
+			<p className="lb-text-xs lb-text-center">
+				Powered by{" "}
+				<a
+					rel="noopener noreferrer"
+					target="_blank"
+					href="https://loopback.works/"
+					className="lb-font-bold"
+				>
+					Loopback
+				</a>
+			</p>
 		</FormProvider>
 	);
 }
@@ -81,18 +94,18 @@ function EmojiScale({ size = "big" }: { size?: "small" | "big" }) {
 function UserInput() {
 	const {
 		register,
-		formState: { isValid },
+		formState: { isSubmitting, errors },
 	} = useFormContext<WidgetFormType>();
 	return (
 		<div className="lb-space-y-4">
 			<div className="lb-space-y-2">
 				<label
-					className="lb-block lb-text-left lb-text-xs lb-uppercase lb-text-black lb-dark:text-white"
+					className="lb-block lb-text-left lb-text-xs lb-uppercase lb-text-black"
 					htmlFor="note"
 				>
-					Feedback
+					Note (optional)
 				</label>
-				<textarea
+				<Textarea
 					{...register("note")}
 					draggable="false"
 					autoCapitalize="off"
@@ -100,31 +113,41 @@ function UserInput() {
 					autoCorrect="off"
 					placeholder="Your feedback..."
 					id="note"
-					className="lb-w-full lb-resize-none lb-rounded-lg lb-border lb-border-gray-300 lb-p-2 lb-text-gray-800 lb-dark:text-white"
+					className="lb-resize-none"
 				/>
+				{errors.note && (
+					<p className="lb-text-xs lb-text-red-600 lb-text-left">{errors.note.message} </p>
+				)}
 			</div>
 			<div className="lb-space-y-2">
 				<label
-					className="lb-block lb-text-left lb-text-xs lb-uppercase lb-text-black lb-dark:text-white"
+					className="lb-block lb-text-left lb-text-xs lb-uppercase lb-text-black"
 					htmlFor="email"
 				>
 					Email (optional)
 				</label>
-				<input
-					{...register("email", {})}
-					className="lb-w-full lb-resize-none lb-rounded-lg lb-border lb-border-gray-300 lb-p-2 lb-text-gray-800 lb-dark:text-white"
-					id="email"
-					placeholder="john@doe.com"
-				/>
+				<Input {...register("email")} id="email" placeholder="john@doe.com" />
+				{errors.email && (
+					<p className="lb-text-xs lb-text-red-600 lb-text-left">{errors.email.message} </p>
+				)}
 			</div>
 			<div className="lb-flex lb-justify-between lb-flex-wrap lb-items-center">
 				<EmojiScale size="small" />
-				<button
-					className="lb-h-9 lb-px-4 lb-py-2 lb-bg-neutral-800 lb-text-white shadow hover:lb-bg-neutral-800/90 lb-inline-flex lb-items-center lb-justify-center lb-whitespace-nowrap lb-rounded-md lb-text-sm lb-font-medium lb-transition-colors focus-visible:lb-outline-none focus-visible:lb-ring-1 focus-visible:lb-ring-neutral-800 disabled:lb-pointer-events-none disabled:lb-opacity-50"
-					disabled={!isValid}
+
+				<Button
+					disabled={isSubmitting}
+					className="lb-flex lb-items-center lb-gap-2"
+					variant="default"
 				>
-					Submit
-				</button>
+					{isSubmitting ? (
+						<IconLoader2 className="lb-animate-spin" />
+					) : (
+						<>
+							Submit
+							<IconSend size={16} />
+						</>
+					)}
+				</Button>
 			</div>
 		</div>
 	);

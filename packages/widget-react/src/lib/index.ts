@@ -1,2 +1,2 @@
-import "./styles.css";
+import "../index.css";
 export { LoopbackWidget } from "./Widget/index";
