@@ -10,7 +10,7 @@ export function SuccessMessage() {
 			<p className="lb-animate-in lb-font-semibold lb-duration-700 lb-fade-in lb-slide-in-from-bottom-4">
 				Your feedback has been received
 			</p>
-			<p className="lb-animate-in lb-text-sm lb-text-neutral-700 lb-duration-700 lb-fade-in lb-slide-in-from-bottom-4">
+			<p className="lb-animate-in lb-text-sm lb-text-neutral-600 lb-duration-700 lb-fade-in lb-slide-in-from-bottom-4">
 				Thanks for submitting your feedback
 			</p>
 		</div>
@@ -27,7 +27,7 @@ export function FailedMessage() {
 			<p className="lb-animate-in lb-font-semibold lb-duration-700 lb-fade-in lb-slide-in-from-bottom-4">
 				Something went wrong...
 			</p>
-			<p className="lb-animate-in lb-text-sm lb-text-neutral-700 lb-duration-700 lb-fade-in lb-slide-in-from-bottom-4">
+			<p className="lb-animate-in lb-text-sm lb-text-neutral-600 lb-duration-700 lb-fade-in lb-slide-in-from-bottom-4">
 				Please try again later
 			</p>
 		</div>

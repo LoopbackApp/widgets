@@ -12,7 +12,7 @@ import { FailedMessage, SuccessMessage } from "./Status";
 export function LoopbackWidget() {
 	const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
 	return (
-		<div className="lb-m-auto loopback-root lb-max-w-md lb-rounded-2xl lb-space-y-6 lb-px-6 lb-py-8">
+		<div className="lb-m-auto lb-bg-background lb-text-foreground lb-border-border lb-font-medium loopback-root lb-max-w-md lb-rounded-2xl lb-space-y-6 lb-px-6 lb-py-8">
 			{submitSuccess === true && <SuccessMessage />}
 			{submitSuccess === false && <FailedMessage />}
 
