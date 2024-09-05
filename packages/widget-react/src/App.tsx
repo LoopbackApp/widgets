@@ -3,7 +3,7 @@ import { LoopbackWidget } from "@/lib";
 export function App() {
 	return (
 		<div>
-			<LoopbackWidget />
+			<LoopbackWidget projectId="asdf" />
 		</div>
 	);
 }

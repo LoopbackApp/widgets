@@ -5,11 +5,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLoader2, IconSend } from "@tabler/icons-react";
 import { Dispatch, SetStateAction, useState } from "react";
 import { FormProvider, useForm, useFormContext } from "react-hook-form";
-import { emotions } from "./constants";
+import { EmojiScale } from "./EmojiScale";
 import { WidgetFormType, widgetSchema } from "./schema";
 import { FailedMessage, SuccessMessage } from "./Status";
 
-export function LoopbackWidget() {
+type Props = {
+	projectId: string;
+};
+export function LoopbackWidget({ projectId }: Props) {
+	projectId;
 	const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
 	return (
 		<div className="lb-m-auto lb-bg-background lb-text-foreground lb-border-border lb-font-medium loopback-root lb-max-w-md lb-rounded-2xl lb-space-y-6 lb-px-6 lb-py-8">
@@ -85,31 +89,6 @@ function WidgetForm({ setSuccess }: WidgetFormProps) {
 	);
 }
 
-function EmojiScale({ size = "big" }: { size?: "small" | "big" }) {
-	const { register, watch } = useFormContext<WidgetFormType>();
-
-	return (
-		<div
-			className={`lb-flex lb-justify-center lb-w-fit ${size === "big" ? "lb-space-x-6" : "lb-space-x-2"}`}
-		>
-			{emotions.map((emotion, idx) => (
-				<label
-					key={idx}
-					className={`${watch("emotion") === emotion.value && emotion.className} lb-rounded-full lb-p-1 lb-cursor-pointer lb-transform lb-transition lb-duration-150 ${emotion.hover}`}
-				>
-					<input
-						type="radio"
-						value={emotion.value}
-						{...register("emotion")}
-						className="lb-sr-only"
-					/>
-					<emotion.icon width={size === "big" ? 48 : 24} height={size === "big" ? 48 : 24} />
-				</label>
-			))}
-		</div>
-	);
-}
-
 function UserInput() {
 	const {
 		register,
@@ -155,7 +134,7 @@ function UserInput() {
 
 				<Button
 					disabled={isSubmitting}
-					className="lb-flex lb-items-center lb-gap-2"
+					className="lb-flex lb-w-[100px] lb-items-center lb-gap-2"
 					variant="default"
 				>
 					{isSubmitting ? (
