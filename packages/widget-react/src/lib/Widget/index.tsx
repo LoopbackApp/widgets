@@ -49,12 +49,16 @@ function WidgetForm({ setSuccess }: WidgetFormProps) {
 
 	async function submitFeedback(data: WidgetFormType) {
 		const feedback = {
-			emotion: data.emotion,
-			note: data.note,
-			email: data.email,
+			type: "feedback",
+			payload: {
+				emotion: data.emotion,
+				note: data.note,
+				email: data.email,
+			},
+			projectId: "verq9o1edz8dcd5co0co4awh",
 		};
 
-		const res = await fetch("tbd", {
+		const res = await fetch("/api/feedback", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
