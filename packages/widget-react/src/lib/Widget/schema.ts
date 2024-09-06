@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const widgetSchema = z
 	.object({
-		emotion: z.union([z.literal(1), z.literal(2), z.literal(3)]),
+		emotion: z.number().min(1).max(3),
 		note: z.string(),
 		email: z.union([z.literal(""), z.string().email()]),
 	})

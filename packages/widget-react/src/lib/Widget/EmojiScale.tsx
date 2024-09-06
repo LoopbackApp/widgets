@@ -17,7 +17,7 @@ export function EmojiScale({ size = "big" }: { size?: "small" | "big" }) {
 					<input
 						type="radio"
 						value={emotion.value}
-						{...register("emotion")}
+						{...register("emotion", { valueAsNumber: true })}
 						className="lb-sr-only"
 					/>
 					<emotion.icon width={size === "big" ? 48 : 24} height={size === "big" ? 48 : 24} />
