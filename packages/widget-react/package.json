@@ -10,7 +10,7 @@
 	],
 	"scripts": {
 		"build": "tsc -b && vite build",
-		"dev": "vite",
+		"dev": "vite --port 5174",
 		"lint": "eslint .",
 		"preview": "vite preview"
 	},

@@ -13,7 +13,6 @@ type Props = {
 	projectId: string;
 };
 export function LoopbackWidget({ projectId }: Props) {
-	projectId;
 	const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
 	return (
 		<div className="lb-m-auto lb-bg-background lb-text-foreground lb-border-border lb-font-medium loopback-root lb-max-w-md lb-rounded-2xl lb-space-y-6 lb-px-6 lb-py-8">
@@ -23,7 +22,7 @@ export function LoopbackWidget({ projectId }: Props) {
 			{submitSuccess === null && (
 				<>
 					<p className="lb-text-center lb-font-bold lb-text-black">Leave feedback</p>
-					<WidgetForm setSuccess={setSubmitSuccess} />
+					<WidgetForm projectId={projectId} setSuccess={setSubmitSuccess}  />
 				</>
 			)}
 			<p className="lb-text-[0.6rem] lb-text-center">
@@ -42,9 +41,10 @@ export function LoopbackWidget({ projectId }: Props) {
 }
 
 type WidgetFormProps = {
+  projectId: string;
 	setSuccess: Dispatch<SetStateAction<boolean | null>>;
 };
-function WidgetForm({ setSuccess }: WidgetFormProps) {
+function WidgetForm({ projectId, setSuccess }: WidgetFormProps) {
 	const form = useForm<WidgetFormType>({ resolver: zodResolver(widgetSchema) });
 
 	async function submitFeedback(data: WidgetFormType) {
@@ -55,7 +55,7 @@ function WidgetForm({ setSuccess }: WidgetFormProps) {
 				note: data.note,
 				email: data.email,
 			},
-			projectId: "verq9o1edz8dcd5co0co4awh",
+			projectId,
 		};
 
 		const res = await fetch("/api/feedback", {
@@ -65,7 +65,7 @@ function WidgetForm({ setSuccess }: WidgetFormProps) {
 			},
 			body: JSON.stringify(feedback),
 		});
-		console.log(res.ok);
+
 		if (res.ok) {
 			setSuccess(true);
 		} else {
@@ -81,7 +81,7 @@ function WidgetForm({ setSuccess }: WidgetFormProps) {
 	return (
 		<FormProvider {...form}>
 			<form onSubmit={form.handleSubmit(submitFeedback)} className="lb-space-y-6">
-				{!!form.watch("emotion") ? (
+				{form.watch("emotion") ? (
 					<UserInput />
 				) : (
 					<div className="lb-flex lb-justify-center">
@@ -137,6 +137,7 @@ function UserInput() {
 				<EmojiScale size="small" />
 
 				<Button
+				  type="submit"
 					disabled={isSubmitting}
 					className="lb-flex lb-w-[100px] lb-items-center lb-gap-2"
 					variant="default"

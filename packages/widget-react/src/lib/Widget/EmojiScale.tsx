@@ -12,7 +12,7 @@ export function EmojiScale({ size = "big" }: { size?: "small" | "big" }) {
 			{emotions.map((emotion, idx) => (
 				<label
 					key={idx}
-					className={`${watch("emotion") === emotion.value && emotion.className} lb-rounded-full lb-p-1 lb-cursor-pointer lb-transform lb-transition lb-duration-150 ${emotion.hover}`}
+					className={`${watch("emotion") == emotion.value && emotion.className} lb-rounded-full lb-p-1 lb-cursor-pointer lb-transform lb-transition lb-duration-150 ${emotion.hover}`}
 				>
 					<input
 						type="radio"
