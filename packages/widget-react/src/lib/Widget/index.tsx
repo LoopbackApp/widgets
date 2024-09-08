@@ -22,7 +22,7 @@ export function LoopbackWidget({ projectId }: Props) {
 			{submitSuccess === null && (
 				<>
 					<p className="lb-text-center lb-font-bold lb-text-black">Leave feedback</p>
-					<WidgetForm projectId={projectId} setSuccess={setSubmitSuccess}  />
+					<WidgetForm projectId={projectId} setSuccess={setSubmitSuccess} />
 				</>
 			)}
 			<p className="lb-text-[0.6rem] lb-text-center">
@@ -41,7 +41,7 @@ export function LoopbackWidget({ projectId }: Props) {
 }
 
 type WidgetFormProps = {
-  projectId: string;
+	projectId: string;
 	setSuccess: Dispatch<SetStateAction<boolean | null>>;
 };
 function WidgetForm({ projectId, setSuccess }: WidgetFormProps) {
@@ -58,7 +58,9 @@ function WidgetForm({ projectId, setSuccess }: WidgetFormProps) {
 			projectId,
 		};
 
-		const res = await fetch("/api/feedback", {
+		const url = `${import.meta.env.VITE_API_URL}/api/feedback`;
+		console.log(url);
+		const res = await fetch(url, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -137,7 +139,7 @@ function UserInput() {
 				<EmojiScale size="small" />
 
 				<Button
-				  type="submit"
+					type="submit"
 					disabled={isSubmitting}
 					className="lb-flex lb-w-[100px] lb-items-center lb-gap-2"
 					variant="default"
