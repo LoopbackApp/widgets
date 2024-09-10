@@ -1,23 +1,27 @@
 {
-  "name": "@loopback/widgets",
-  "version": "1.0.0",
-  "description": "",
-  "license": "MIT",
-  "main": "index.js",
-  "scripts": {
-    "build": "pnpm run --parallel build",
-    "changeset": "changeset",
-    "changeset:publish": "changeset publish",
-    "changeset:version": "changeset version && pnpm install --lockfile-only",
-    "dev": "pnpm run --parallel dev",
-    "prepublishOnly": "pnpm build"
-  },
-  "dependencies": {
-    "@changesets/cli": "^2.27.7"
-  },
-  "devDependencies": {
-    "lefthook": "^1.7.14",
-    "oxlint": "^0.9.1",
-    "prettier": "^3.3.3"
-  }
+	"name": "@loopback/widgets",
+	"version": "1.0.0",
+	"description": "",
+	"license": "MIT",
+	"main": "index.js",
+	"scripts": {
+		"clean": "pnpm run --parallel clean",
+		"build": "pnpm run --parallel build",
+		"changeset": "changeset",
+		"changeset:publish": "changeset publish",
+		"changeset:version": "changeset version && pnpm install --lockfile-only",
+		"dev": "pnpm run --parallel dev",
+		"format": "prettier --write .",
+		"prepublishOnly": "pnpm build"
+	},
+	"dependencies": {
+		"@changesets/cli": "^2.27.7"
+	},
+	"devDependencies": {
+		"lefthook": "^1.7.14",
+		"oxlint": "^0.9.1",
+		"prettier": "^3.3.3",
+		"prettier-plugin-svelte": "^3.2.6",
+		"prettier-plugin-tailwindcss": "^0.6.6"
+	}
 }
