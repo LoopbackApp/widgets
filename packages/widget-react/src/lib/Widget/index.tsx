@@ -58,8 +58,7 @@ function WidgetForm({ projectId, setSuccess }: WidgetFormProps) {
 			projectId,
 		};
 
-		const url = `${import.meta.env.VITE_API_URL}/api/feedback`;
-		console.log(url);
+		const url = `${import.meta.env.VITE_API_URL ?? ""}/api/feedback`;
 		const res = await fetch(url, {
 			method: "POST",
 			headers: {
