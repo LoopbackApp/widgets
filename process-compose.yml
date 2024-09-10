@@ -8,7 +8,7 @@ processes:
   dev:
     namespace: dev
     command: |
-      pnpm dev
+      SHELL=/bin/bash pnpm dev
     depends_on:
       init_dependencies:
         condition: process_completed_successfully
