@@ -5,6 +5,7 @@
 	"license": "MIT",
 	"main": "index.js",
 	"scripts": {
+		"clean": "pnpm run --parallel clean",
 		"build": "pnpm run --parallel build",
 		"changeset": "changeset",
 		"changeset:publish": "changeset publish",
@@ -20,6 +21,8 @@
 	"devDependencies": {
 		"lefthook": "^1.7.14",
 		"oxlint": "^0.9.1",
-		"prettier": "^3.3.3"
+		"prettier": "^3.3.3",
+		"prettier-plugin-svelte": "^3.2.6",
+		"prettier-plugin-tailwindcss": "^0.6.6"
 	}
 }
