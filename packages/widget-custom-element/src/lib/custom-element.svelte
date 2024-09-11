@@ -5,34 +5,16 @@
 
   export let projectId: string;
 
-  $: wrapperHeight = "35px";
-  $: wrapperWidth = "";
   let isExpanded = false;
-
-  function handleMouseEnter() {
-    if (isExpanded) {
-      wrapperHeight = "400px";
-      wrapperWidth = "450px";
-    } else {
-      wrapperHeight = "215px";
-    }
-  }
-
-  function handleMouseLeave() {
-    wrapperHeight = "35px";
-  }
 </script>
 
 <div
   role="dialog"
-  style:height={wrapperHeight}
-  style:width={wrapperWidth}
   class="wrapper"
-  on:mouseenter={handleMouseEnter}
-  on:mouseleave={handleMouseLeave}
+  class:expanded={isExpanded}
 >
-  <div class="title">Feedback 💬</div>
   <div class="widget">
+  <div class="title lb-bg-background lb-text-foreground">Feedback 💬</div>
     <FeedbackWidget
       {projectId}
       on:emotion-changed={(event) => {
@@ -46,22 +28,38 @@
 <style>
   .wrapper {
     position: fixed;
+    height: 0px;
     bottom: 0;
     left: 1rem;
-    overflow: hidden;
     transition:
       height 0.3s ease,
       width 0.3s ease;
   }
+  
+  .wrapper.expanded {
+      height: 0px;
+      width: 450px;      
+  }
+  
+  .wrapper:hover {
+      height: fit-content;
+  }
+  
+  .wrapper:hover.expanded {
+      width: 450px;
+  }
 
   .widget {
     border: black solid 1px;
-    border-top-right-radius: 0.75rem;
+    border-top-right-radius: 1rem;
     border-bottom: 0;
   }
 
   .title {
-    position: relative;
+      position: absolute;
+      top: -34px;
+      left: 0;
+    /*margin-bottom: -1px;*/ /* To cover the .widget top border */
     text-align: center;
     width: 135px;
     padding: 5px 10px;
@@ -69,12 +67,12 @@
     border-top: black solid 1px;
     border-right: black solid 1px;
     border-left: black solid 1px;
-    border-top-right-radius: 0.75rem;
-    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
     border-bottom: 0;
   }
 
-  .title::after {
+  /* .title::after {
     content: "";
     position: absolute;
     bottom: -1px;
@@ -83,5 +81,5 @@
     height: 1px;
     background-color: white;
     z-index: 1;
-  }
+  } */
 </style>

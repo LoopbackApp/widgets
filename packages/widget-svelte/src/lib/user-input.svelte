@@ -18,7 +18,7 @@
 
 <div class="lb-space-y-4">
 	<div class="lb-space-y-2">
-		<label class="lb-block lb-text-left lb-text-xs lb-uppercase lb-text-black" for="note">
+		<label class="lb-block lb-text-left lb-text-xs lb-uppercase" for="note">
 			Note (optional)
 		</label>
 		<Textarea
@@ -36,7 +36,7 @@
 		{/if}
 	</div>
 	<div class="lb-space-y-2">
-		<label class="lb-block lb-text-left lb-text-xs lb-uppercase lb-text-black" for="email">
+		<label class="lb-block lb-text-left lb-text-xs lb-uppercase" for="email">
 			Email (optional)
 		</label>
 		<Input bind:value={email} id="email" placeholder="john@doe.com" />
