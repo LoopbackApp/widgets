@@ -15,6 +15,8 @@
 		note?: string;
 	} = {};
 	let isSubmitting = false;
+	let email: string;
+	let note: string;
 </script>
 
 <div class="lb-space-y-4">

@@ -1,9 +1,7 @@
 (function () {
   const SRC = document.currentScript?.getAttribute("src") ?? "";
   const VERSION = SRC.match(/\/(\d+\.\d+\.\d+)\//)?.at(1) ?? "latest";
-  const SUBDOMAIN =
-    SRC.match(/^(?:https?:\/\/)?([a-zA-Z0-9-]+)\.loopback\.works/)?.at(1) ??
-    "widget";
+  const SUBDOMAIN = SRC.match(/^(?:https?:\/\/)?([a-zA-Z0-9-]+)\.loopback\.works/)?.at(1) ?? "widget"
   const BASE_URL =
     window.location.hostname === "localhost"
       ? "./dist"
