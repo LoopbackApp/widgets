@@ -1,6 +1,6 @@
 {
 	"name": "@loopbackapp/widget-js-script",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"private": true,
 	"scripts": {
 		"clean": "rm -fr ./dist",
@@ -22,7 +22,7 @@
 		"upload:js": "run-p upload:js:*",
 		"upload:js:ce": "wrangler r2 object put $CLOUDFLARE_R2_BUCKET/$(node -p \"require('./package.json').version\")/ce.js --file ./dist/ce.js --content-type 'application/javascript'",
 		"upload:js:loopback": "wrangler r2 object put $CLOUDFLARE_R2_BUCKET/$(node -p \"require('./package.json').version\")/loopback.js --file ./dist/loopback.js --content-type 'application/javascript'",
-    "upload:css": "wrangler r2 object put $CLOUDFLARE_R2_BUCKET/$(node -p \"require('./package.json').version\")/widget.min.css --file ./dist/widget.min.css --content-type 'text/css'",
+		"upload:css": "wrangler r2 object put $CLOUDFLARE_R2_BUCKET/$(node -p \"require('./package.json').version\")/widget.min.css --file ./dist/widget.min.css --content-type 'text/css'",
 		"upload:latest:js": "run-p upload:latest:js:*",
 		"upload:latest:js:ce": "wrangler r2 object put $CLOUDFLARE_R2_BUCKET/latest/ce.js --file ./dist/ce.js --content-type 'application/javascript'",
 		"upload:latest:js:loopback": "wrangler r2 object put $CLOUDFLARE_R2_BUCKET/latest/loopback.js --file ./dist/loopback.js --content-type 'application/javascript'",
