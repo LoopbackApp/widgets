@@ -9,6 +9,7 @@
 		"dev:watch:customElement": "chokidar './src/**' -c 'vite build'",
 		"build": "pnpm clean && pnpm build:sveltecomponent && vite build",
 		"build:sveltecomponent": "(cd ../widget-svelte && pnpm build)",
+		"prepare": "svelte-kit sync",
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "pnpm package",
