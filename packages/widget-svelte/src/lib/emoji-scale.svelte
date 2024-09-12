@@ -4,7 +4,7 @@
 	import IconMoodSad from "@tabler/icons-svelte/icons/mood-sad";
 
 	export let size: "small" | "big" = "big";
-	export let selectedEmotion: 1 | 2 | 3;
+	export let selectedEmotion: null | 1 | 2 | 3;
 
 	const emotions = [
 		{

@@ -5,15 +5,16 @@
 	import IconLoader2 from "@tabler/icons-svelte/icons/loader-2";
 	import IconSend from "@tabler/icons-svelte/icons/send";
 	import EmojiScale from "./emoji-scale.svelte";
-	export let selectedEmotion: 1 | 2 | 3;
+
+	export let selectedEmotion: null | 1 | 2 | 3;
+	export let email: null | string;
+	export let note: null | string;
 
 	let errors: {
 		email?: string;
 		note?: string;
 	} = {};
 	let isSubmitting = false;
-	let email: string;
-	let note: string;
 </script>
 
 <div class="lb-space-y-4">
