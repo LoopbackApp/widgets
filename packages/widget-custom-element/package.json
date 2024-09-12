@@ -1,0 +1,50 @@
+{
+	"name": "@loopbackapp/widget-custom-element",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"clean": "rm -fr ./dist",
+		"dev": "run-p dev:watch:* build",
+		"dev:watch:svelte": "chokidar '../widget-svelte/src/**' -c 'pnpm build'",
+		"dev:watch:customElement": "chokidar './src/**' -c 'vite build'",
+		"build": "pnpm clean && pnpm build:sveltecomponent && vite build",
+		"build:sveltecomponent": "(cd ../widget-svelte && pnpm build)",
+		"preview": "vite preview",
+		"package": "svelte-kit sync && svelte-package && publint",
+		"prepublishOnly": "pnpm package",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"peerDependencies": {
+		"svelte": "^4.0.0"
+	},
+	"devDependencies": {
+		"@loopbackapp/widget-svelte": "workspace:^",
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/package": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.1.2",
+		"chokidar-cli": "^3.0.0",
+		"npm-run-all": "^4.1.5",
+		"publint": "^0.2.0",
+		"svelte": "^4.2.7",
+		"svelte-check": "^4.0.0",
+		"typescript": "^5.0.0",
+		"uglify-js": "^3.19.3",
+		"vite": "^5.0.11"
+	},
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"type": "module"
+}
