@@ -1,6 +1,7 @@
 {
 	"name": "@loopbackapp/widget-js-script",
 	"version": "0.0.1",
+	"private": true,
 	"scripts": {
 		"clean": "rm -fr ./dist",
 		"dev": "pnpm clean && mkdir ./dist && run-p dev:copy:* dev:minifyLoopbackJs && run-p dev:watch:* dev:server",

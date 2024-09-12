@@ -1,6 +1,7 @@
 {
 	"name": "@loopbackapp/widget-custom-element",
 	"version": "0.0.1",
+	"private": true,
 	"scripts": {
 		"clean": "rm -fr ./dist",
 		"dev": "run-p dev:watch:* build",
