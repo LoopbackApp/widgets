@@ -65,7 +65,6 @@
   {:else if submitSuccess === false}
     <StatusFailure />
   {:else}
-    <p class="lb-text-center lb-font-bold">Leave feedback</p>
     <form
       bind:this={form}
       action="post"

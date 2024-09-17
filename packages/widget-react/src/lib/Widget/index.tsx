@@ -19,12 +19,7 @@ export function LoopbackWidget({ projectId }: Props) {
 			{submitSuccess === true && <SuccessMessage />}
 			{submitSuccess === false && <FailedMessage />}
 
-			{submitSuccess === null && (
-				<>
-					<p className="lb-text-center lb-font-bold lb-text-black">Leave feedback</p>
-					<WidgetForm projectId={projectId} setSuccess={setSubmitSuccess} />
-				</>
-			)}
+			{submitSuccess === null && <WidgetForm projectId={projectId} setSuccess={setSubmitSuccess} />}
 			<p className="lb-text-[0.6rem] lb-text-center">
 				Powered by{" "}
 				<a
