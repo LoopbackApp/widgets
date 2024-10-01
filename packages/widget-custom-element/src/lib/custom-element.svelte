@@ -4,23 +4,16 @@
   import { FeedbackWidget } from "@loopbackapp/widget-svelte";
 
   export let projectId: string;
-
-  let isExpanded = false;
 </script>
 
 <div
   role="dialog"
   class="wrapper"
-  class:expanded={isExpanded}
 >
-  <div class="widget">
-  <div class="title lb-bg-background lb-text-foreground">Feedback 💬</div>
+  <div class="widget-wrapper">
+  <div class="title">Feedback 💬</div>
     <FeedbackWidget
       {projectId}
-      on:emotion-changed={(event) => {
-        console.log({ event });
-        isExpanded = true;
-      }}
     />
   </div>
 </div>
@@ -36,30 +29,28 @@
       width 0.3s ease;
   }
   
-  .wrapper.expanded {
-      height: 0px;
-      width: 450px;      
-  }
-  
   .wrapper:hover {
       height: fit-content;
   }
   
-  .wrapper:hover.expanded {
-      width: 450px;
-  }
-
-  .widget {
+  .widget-wrapper {
     border: black solid 1px;
     border-top-right-radius: 1rem;
     border-bottom: 0;
   }
+  
+  .widget-wrapper :global(.widget) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+  }
 
   .title {
       position: absolute;
-      top: -34px;
+      top: -32px;
       left: 0;
-    /*margin-bottom: -1px;*/ /* To cover the .widget top border */
+      background-color: var(--lb-background);
+      color: var(--lb-foreground);
     text-align: center;
     width: 135px;
     padding: 5px 10px;
@@ -71,15 +62,4 @@
     border-top-left-radius: 1rem;
     border-bottom: 0;
   }
-
-  /* .title::after {
-    content: "";
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: white;
-    z-index: 1;
-  } */
 </style>

@@ -1,6 +1,15 @@
 <script lang="ts">
-	import "$lib/widget.css";
-	import Widget from "$lib/widget.svelte";
+	import Widget from '$lib/widget.svelte';
 </script>
 
-<Widget projectId="abc" />
+<div>
+	<Widget />
+</div>
+
+<style>
+	div {
+		max-width: 264px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+</style>
