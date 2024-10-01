@@ -1,5 +1,11 @@
 # @loopbackapp/widget-svelte
 
+## 0.1.2
+
+### Patch Changes
+
+- ced2ced: Update the POST request payload
+
 ## 0.1.1
 
 ### Patch Changes
