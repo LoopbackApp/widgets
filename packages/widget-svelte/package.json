@@ -1,6 +1,6 @@
 {
 	"name": "@loopbackapp/widget-svelte",
-	"version": "0.1.2",
+	"version": "0.2.0",
 	"scripts": {
 		"dev": "vite dev --port 5175",
 		"build": "vite build && npm run package",
