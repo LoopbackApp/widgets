@@ -20,7 +20,7 @@
 			email,
 			projectId
 		};
-		const url = `${window.location.hostname === 'localhost' ? 'http://localhost:5173' : 'https://dash.loopback.works'}/api/feedbackTTT`;
+		const url = `${window.location.hostname === 'localhost' ? 'http://localhost:5173' : 'https://dash.loopback.works'}/api/feedback`;
 		const res = await fetch(url, {
 			method: 'POST',
 			headers: {
