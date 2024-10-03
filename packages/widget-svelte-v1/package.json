@@ -1,6 +1,7 @@
 {
 	"name": "@loopbackapp/widget-svelte-v1",
 	"version": "0.1.1",
+	"private": true,
 	"scripts": {
 		"clean": "rm -fr ./dist",
 		"TTTdev": "run-p dev:watch:svelte dev:server",
