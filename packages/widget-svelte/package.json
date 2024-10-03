@@ -2,8 +2,9 @@
 	"name": "@loopbackapp/widget-svelte",
 	"version": "0.2.0",
 	"scripts": {
+		"clean": "rm -fr ./dist",
 		"dev": "vite dev --port 5175",
-		"build": "vite build && npm run package",
+		"build": "pnpm clean && vite build && npm run package",
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "npm run package",
