@@ -1,5 +1,11 @@
 # @loopbackapp/widget-js-script
 
+## 0.3.0
+
+### Minor Changes
+
+- 55c5de1: Make sure the widget works when customers develop their web apps locally
+
 ## 0.2.0
 
 ### Minor Changes
