@@ -3,10 +3,7 @@
 	const VERSION = SRC.match(/\/(\d+\.\d+\.\d+)\//)?.at(1) ?? "latest";
 	const SUBDOMAIN =
 		SRC.match(/^(?:https?:\/\/)?([a-zA-Z0-9-]+)\.loopback\.works/)?.at(1) ?? "widget";
-	const BASE_URL =
-		window.location.hostname === "localhost"
-			? "./dist"
-			: `https://${SUBDOMAIN}.loopback.works/${VERSION}`;
+	const BASE_URL = `https://${SUBDOMAIN}.loopback.works/${VERSION}`;
 	const projectId = document.currentScript?.getAttribute("data-project-id");
 
 	const script = document.createElement("script");
