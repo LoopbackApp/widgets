@@ -16,7 +16,7 @@
 		link.rel = "stylesheet";
 		link.type = "text/css";
 		const HOST =
-			window.location.hostname === "localhost"
+			new URL(SRC).hostname === "localhost"
 				? "http://localhost:5173"
 				: "https://dash.loopback.works";
 		link.href = `${HOST}/projects/${projectId}/widget/css`;
