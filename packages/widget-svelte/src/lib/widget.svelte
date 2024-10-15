@@ -1,17 +1,23 @@
 <script lang="ts">
 	import Emotion from '$lib/emotions/emotion.svelte';
 	import Status from './status.svelte';
+
 	export let projectId: string;
+
 	const moods = new Array(3).fill(0).map((_, index) => index + 1);
+
 	let selectedEmotion: number | null = null;
 	let email: null | string;
 	let note: null | string;
 	let form: HTMLFormElement;
 	let submitSuccess: boolean | null;
+
 	$: submitSuccess = null;
+
 	function selectMood(value: number) {
 		selectedEmotion = value;
 	}
+
 	async function submitFeedback() {
 		const feedback = {
 			type: 'feedback',
@@ -41,14 +47,28 @@
 			submitSuccess = null;
 		}, 5000);
 	}
+
+	let cssUrl;
+	if (typeof window !== 'undefined') {
+		// Only run this in the browser where we have access to the `window` object.
+		// Otherwise, SSR renders the dash.loopback.works CSS file while the browser then
+		// overwrites it with the localhost URL.
+		cssUrl = `${typeof window !== 'undefined' && window.location.search?.includes('loopback-dev') ? 'http://localhost:5173' : 'https://dash.loopback.works'}/projects/${projectId}/widget/css`;
+	}
 </script>
 
-<div class="widget" part="widget">
+<svelte:head>
+	{#if cssUrl}
+		<link rel="stylesheet" type="text/css" href={cssUrl} />
+	{/if}
+</svelte:head>
+
+<div class="lb-widget" part="widget">
 	{#if submitSuccess === true}
 		<Status>
 			<svg
 				slot="icon"
-				class="text-red-700 slide-in-from-bottom-4 duration-700 fade-in animate-in"
+				class="lb-text-red-700 slide-in-from-bottom-4 duration-700 fade-in animate-in"
 				xmlns="http://www.w3.org/2000/svg"
 				width="36"
 				height="36"
@@ -69,7 +89,7 @@
 		<Status>
 			<svg
 				slot="icon"
-				class="text-red-700 slide-in-from-bottom-4 duration-700 fade-in animate-in"
+				class="lb-text-red-700 slide-in-from-bottom-4 duration-700 fade-in animate-in"
 				xmlns="http://www.w3.org/2000/svg"
 				width="36"
 				height="36"
@@ -88,11 +108,15 @@
 		</Status>
 	{:else}
 		{#if selectedEmotion}
-			<button on:click={() => (selectedEmotion = null)} class="close" part="close">&times;</button>
-			<h2 part="title">How are you feeling?</h2>
-			<p part="description">Your feedback is valuable in helping us understand your needs.</p>
+			<button on:click={() => (selectedEmotion = null)} class="lb-close" part="close"
+				>&times;</button
+			>
+			<h2 class="lb-title" part="title">How are you feeling?</h2>
+			<p class="lb-description" part="description">
+				Your feedback is valuable in helping us understand your needs.
+			</p>
 		{/if}
-		<div class="emoji-container" part="emoji-container">
+		<div class="lb-emoji-container" part="emoji-container">
 			{#each moods as mood}
 				<Emotion
 					on:click={(event) => selectMood(event.detail)}
@@ -103,12 +127,12 @@
 			{/each}
 		</div>
 		{#if selectedEmotion}
-			<form bind:this={form} on:submit|preventDefault={submitFeedback} part="form">
+			<form class="lb-form" bind:this={form} on:submit|preventDefault={submitFeedback} part="form">
 				<input bind:value={email} type="email" placeholder="Enter your email" part="email" />
 				<textarea bind:value={note} placeholder="Add a comment" part="note"></textarea>
-				<button type="submit" part="submit">Submit</button>
+				<button type="submit" part="submit" class="lb-button">Submit</button>
 			</form>
-			<div class="powered-by">
+			<div class="lb-powered-by">
 				powered by <a href="https://loopback.works" target="_blank">Loopback</a>
 			</div>
 		{/if}
@@ -116,7 +140,7 @@
 </div>
 
 <style>
-	.text-red-700 {
+	.lb-text-red-700 {
 		color: #b91c1c; /* red-700 */
 	}
 </style>
