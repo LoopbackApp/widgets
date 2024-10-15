@@ -1,5 +1,11 @@
 # @loopbackapp/widget-svelte
 
+## 0.4.0
+
+### Minor Changes
+
+- 60052c4: Prefix CSS class names with lb-
+
 ## 0.3.0
 
 ### Minor Changes
