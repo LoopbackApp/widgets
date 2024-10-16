@@ -1,5 +1,11 @@
 # @loopbackapp/widget-svelte
 
+## 0.4.1
+
+### Patch Changes
+
+- 9b65a86: Fix the class name for the svelte widget submit button.
+
 ## 0.4.0
 
 ### Minor Changes
