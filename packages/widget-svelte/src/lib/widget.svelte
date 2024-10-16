@@ -130,7 +130,7 @@
 			<form class="lb-form" bind:this={form} on:submit|preventDefault={submitFeedback} part="form">
 				<input bind:value={email} type="email" placeholder="Enter your email" part="email" />
 				<textarea bind:value={note} placeholder="Add a comment" part="note"></textarea>
-				<button type="submit" part="submit" class="lb-button">Submit</button>
+				<button type="submit" part="submit" class="lb-btn-submit">Submit</button>
 			</form>
 			<div class="lb-powered-by">
 				powered by <a href="https://loopback.works" target="_blank">Loopback</a>
