@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Emotion from '$lib/emotions/emotion.svelte';
+	import { onMount } from 'svelte';
 	import Status from './status.svelte';
 
 	export let projectId: string;
@@ -48,20 +49,37 @@
 		}, 5000);
 	}
 
-	let cssUrl;
-	if (typeof window !== 'undefined') {
-		// Only run this in the browser where we have access to the `window` object.
-		// Otherwise, SSR renders the dash.loopback.works CSS file while the browser then
-		// overwrites it with the localhost URL.
-		cssUrl = `${typeof window !== 'undefined' && window.location.search?.includes('loopback-dev') ? 'http://localhost:5173' : 'https://dash.loopback.works'}/projects/${projectId}/widget/css`;
-	}
-</script>
+	onMount(() => {
+		let isInShadowDOM = false;
+		const element = document.querySelector('loopback-widget');
 
-<svelte:head>
-	{#if cssUrl}
-		<link rel="stylesheet" type="text/css" href={cssUrl} />
-	{/if}
-</svelte:head>
+		let currentElement: Element | null | undefined = element;
+		do {
+			if (element?.shadowRoot) {
+				isInShadowDOM = true;
+				break;
+			}
+			currentElement = currentElement?.parentElement;
+		} while (currentElement);
+
+		const search = window.location.search;
+		const isLoopbackDev = search?.includes('loopback-dev');
+		const isLoopbackDraft = search?.includes('loopback-draft');
+		const host = isLoopbackDev ? 'http://localhost:5173' : 'https://dash.loopback.works';
+
+		const link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = `${host}/projects/${projectId}/widget/css${isLoopbackDraft ? '?loopback-draft' : ''}`;
+		if (isInShadowDOM) {
+			const shadowRoot = document.querySelector('loopback-widget')?.shadowRoot;
+			if (!shadowRoot) return;
+			shadowRoot.appendChild(link);
+		} else {
+			document.head.appendChild(link);
+		}
+	});
+</script>
 
 <div class="lb-widget" part="widget">
 	{#if submitSuccess === true}
