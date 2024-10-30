@@ -25,7 +25,8 @@
 			emotion: selectedEmotion,
 			note,
 			email,
-			projectId
+			projectId,
+			origin: window.location.href
 		};
 		const url = `${window.location.search?.includes('loopback-dev') ? 'http://localhost:5173' : 'https://dash.loopback.works'}/api/feedback`;
 		const res = await fetch(url, {
