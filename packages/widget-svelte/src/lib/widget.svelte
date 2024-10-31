@@ -1,160 +1,58 @@
 <script lang="ts">
-	import Emotion from '$lib/emotions/emotion.svelte';
 	import { onMount } from 'svelte';
 	import Status from './status.svelte';
-
+	import { initializeStyles } from './styles';
+	import { submitFeedbackForm } from './api-helper';
+	import Form from './form.svelte';
+	import type { WidgetState } from './types';
 	export let projectId: string;
 
-	const moods = new Array(3).fill(0).map((_, index) => index + 1);
+	const MOODS = Array.from({ length: 3 })
+		.fill(0)
+		.map((_, index) => index + 1);
+	const WIDGET_RESET_DELAY_MS = 500000;
 
-	let selectedEmotion: number | null = null;
-	let email: null | string;
-	let note: null | string;
+	let state: WidgetState = {
+		selectedEmotion: null,
+		email: null,
+		note: null,
+		submitSuccess: null
+	};
 	let form: HTMLFormElement;
-	let submitSuccess: boolean | null;
 
-	$: submitSuccess = null;
-
-	function selectMood(value: number) {
-		selectedEmotion = value;
-	}
-
-	async function submitFeedback() {
-		const feedback = {
-			type: 'feedback',
-			emotion: selectedEmotion,
-			note,
-			email,
-			projectId,
-			origin: window.location.href
-		};
-		const url = `${window.location.search?.includes('loopback-dev') ? 'http://localhost:5173' : 'https://dash.loopback.works'}/api/feedback`;
-		const res = await fetch(url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(feedback)
-		});
-		if (res.ok) {
-			submitSuccess = true;
-		} else {
-			submitSuccess = false;
-		}
+	function resetForm() {
 		form.reset();
 		setTimeout(() => {
-			selectedEmotion = null;
-			email = null;
-			note = null;
-			submitSuccess = null;
-		}, 5000);
+			state = {
+				selectedEmotion: null,
+				email: null,
+				note: null,
+				submitSuccess: null
+			};
+		}, WIDGET_RESET_DELAY_MS);
+	}
+
+	async function handleSubmit() {
+		state.submitSuccess = await submitFeedbackForm({
+			...state,
+			projectId,
+			origin: window.location.href
+		});
+		resetForm();
 	}
 
 	onMount(() => {
-		let isInShadowDOM = false;
-		const element = document.querySelector('loopback-widget');
-
-		let currentElement: Element | null | undefined = element;
-		do {
-			if (element?.shadowRoot) {
-				isInShadowDOM = true;
-				break;
-			}
-			currentElement = currentElement?.parentElement;
-		} while (currentElement);
-
-		const search = window.location.search;
-		const isLoopbackDev = search?.includes('loopback-dev');
-		const isLoopbackDraft = search?.includes('loopback-draft');
-		const host = isLoopbackDev ? 'http://localhost:5173' : 'https://dash.loopback.works';
-
-		const link = document.createElement('link');
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = `${host}/projects/${projectId}/widget/css${isLoopbackDraft ? '?loopback-draft' : ''}`;
-		if (isInShadowDOM) {
-			const shadowRoot = document.querySelector('loopback-widget')?.shadowRoot;
-			if (!shadowRoot) return;
-			shadowRoot.appendChild(link);
-		} else {
-			document.head.appendChild(link);
-		}
+		initializeStyles(projectId);
 	});
 </script>
 
 <div class="lb-widget" part="widget">
-	{#if submitSuccess === true}
-		<Status>
-			<svg
-				slot="icon"
-				class="lb-text-red-700 slide-in-from-bottom-4 duration-700 fade-in animate-in"
-				xmlns="http://www.w3.org/2000/svg"
-				width="36"
-				height="36"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path
-					d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"
-				/></svg
-			>
-			<svelte:fragment slot="messageTop">Your feedback has been received</svelte:fragment>
-			<svelte:fragment slot="messageBottom">Thanks for submitting your feedback</svelte:fragment>
-		</Status>
-	{:else if submitSuccess === false}
-		<Status>
-			<svg
-				slot="icon"
-				class="lb-text-red-700 slide-in-from-bottom-4 duration-700 fade-in animate-in"
-				xmlns="http://www.w3.org/2000/svg"
-				width="36"
-				height="36"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path
-					d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"
-				/><path d="M12 6l-2 4l4 3l-2 4v3" /></svg
-			>
-			<svelte:fragment slot="messageTop">Something went wrong...</svelte:fragment>
-			<svelte:fragment slot="messageBottom">Please try again later</svelte:fragment>
-		</Status>
+	{#if state.submitSuccess === true}
+		<Status type="success" />
+	{:else if state.submitSuccess === false}
+		<Status type="error" />
 	{:else}
-		{#if selectedEmotion}
-			<button on:click={() => (selectedEmotion = null)} class="lb-close" part="close"
-				>&times;</button
-			>
-			<h2 class="lb-title" part="title">How are you feeling?</h2>
-			<p class="lb-description" part="description">
-				Your feedback is valuable in helping us understand your needs.
-			</p>
-		{/if}
-		<div class="lb-emoji-container" part="emoji-container">
-			{#each moods as mood}
-				<Emotion
-					on:click={(event) => selectMood(event.detail)}
-					emotionComponent={moods.length === 5 ? mood : mood * 2 - 1}
-					emotionValue={mood}
-					bind:selected={selectedEmotion}
-				/>
-			{/each}
-		</div>
-		{#if selectedEmotion}
-			<form class="lb-form" bind:this={form} on:submit|preventDefault={submitFeedback} part="form">
-				<input bind:value={email} type="email" placeholder="Enter your email" part="email" />
-				<textarea bind:value={note} placeholder="Add a comment" part="note"></textarea>
-				<button type="submit" part="submit" class="lb-btn-submit">Submit</button>
-			</form>
-			<div class="lb-powered-by">
-				powered by <a href="https://loopback.works" target="_blank">Loopback</a>
-			</div>
-		{/if}
+		<Form {MOODS} bind:state on:submit={handleSubmit} bind:form />
 	{/if}
 </div>
 

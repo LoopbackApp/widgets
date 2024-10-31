@@ -1,12 +1,56 @@
+<script lang="ts">
+	export let type: 'success' | 'error';
+</script>
+
 <div class="lb-flex lb-space-y-2 lb-flex-col lb-items-center lb-justify-center">
-	<slot name="icon" />
+	{#if type === 'success'}
+		<svg
+			class="lb-text-red-700 slide-in-from-bottom-4 duration-700 fade-in animate-in"
+			xmlns="http://www.w3.org/2000/svg"
+			width="36"
+			height="36"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path
+				d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"
+			/></svg
+		>
+	{:else if type === 'error'}
+		<svg
+			class="lb-text-red-700 slide-in-from-bottom-4 duration-700 fade-in animate-in"
+			xmlns="http://www.w3.org/2000/svg"
+			width="36"
+			height="36"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path
+				d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"
+			/><path d="M12 6l-2 4l4 3l-2 4v3" /></svg
+		>
+	{/if}
 	<p class="lb-animate-in lb-font-semibold lb-duration-700 lb-fade-in lb-slide-in-from-bottom-4">
-		<slot name="messageTop" />
+		{#if type === 'success'}
+			Your feedback has been received
+		{:else if type === 'error'}
+			Something went wrong...
+		{/if}
 	</p>
 	<p
 		class="lb-animate-in lb-text-sm lb-text-neutral-600 lb-duration-700 lb-fade-in lb-slide-in-from-bottom-4"
 	>
-		<slot name="messageBottom" />
+		{#if type === 'success'}
+			Thanks for submitting your feedback
+		{:else if type === 'error'}
+			Please try again later
+		{/if}
 	</p>
 </div>
 
