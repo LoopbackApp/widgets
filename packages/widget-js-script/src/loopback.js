@@ -4,11 +4,6 @@
 		devUrl: "http://localhost:5176/dist",
 		prodUrlTemplate: "https://{subdomain}.loopback.works/{version}",
 		customStyles: `
-      .lb-widget {
-        border-radius: 0px;
-        border-top-right-radius: 15px;
-      }
-      
       .lb-close {
         display: none;
       }

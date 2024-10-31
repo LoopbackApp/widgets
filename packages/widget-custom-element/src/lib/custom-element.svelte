@@ -28,8 +28,8 @@
 		font-family: sans-serif;
 		border: var(--lb-widget-bg) solid 1px;
 		border-bottom: 0;
-		border-top-left-radius: var(--border-top-left-radius);
-		border-top-right-radius: var(--border-top-right-radius);
+		border-top-left-radius: calc(var(--border-top-left-radius) + 1px);
+		border-top-right-radius: calc(var(--border-top-right-radius) + 1px);
 		transition:
 			height 0.3s ease,
 			width 0.3s ease;
