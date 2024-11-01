@@ -1,5 +1,12 @@
 # @loopbackapp/widget-custom-element
 
+## 0.3.0
+
+### Minor Changes
+
+- f5a3a8a: Introduce ?loopback-widget-draft and ?loopback-widget-dev query string parameters.
+- 3ed740e: Let the Svelte widget load the correct CSS file.
+
 ## 0.2.0
 
 ### Minor Changes
