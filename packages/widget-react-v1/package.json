@@ -1,5 +1,5 @@
 {
-	"name": "@loopbackapp/widget-react",
+	"name": "@loopbackapp/widget-react-v1",
 	"version": "0.1.1",
 	"type": "module",
 	"main": "dist/index.es.js",
@@ -9,7 +9,6 @@
 	],
 	"scripts": {
 		"build": "tsc -b && vite build",
-		"dev": "vite --port 5174",
 		"lint": "eslint .",
 		"preview": "vite preview"
 	},

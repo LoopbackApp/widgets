@@ -91,10 +91,10 @@ importers:
   packages/widget-react:
     dependencies:
       react:
-        specifier: ^18.3.1
+        specifier: ^18
         version: 18.3.1
       react-dom:
-        specifier: ^18.3.1
+        specifier: ^18
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@eslint/js':
@@ -130,6 +130,9 @@ importers:
       vite:
         specifier: ^5.4.10
         version: 5.4.10
+      vite-plugin-dts:
+        specifier: ^4.1.0
+        version: 4.1.0(rollup@4.21.2)(typescript@5.6.3)(vite@5.4.10)
 
   packages/widget-react-v1:
     dependencies:
@@ -4780,6 +4783,19 @@ snapshots:
     optionalDependencies:
       typescript: 5.5.4
 
+  '@vue/language-core@2.0.29(typescript@5.6.3)':
+    dependencies:
+      '@volar/language-core': 2.4.1
+      '@vue/compiler-dom': 3.5.0
+      '@vue/compiler-vue2': 2.7.16
+      '@vue/shared': 3.5.0
+      computeds: 0.0.1
+      minimatch: 9.0.5
+      muggle-string: 0.4.1
+      path-browserify: 1.0.1
+    optionalDependencies:
+      typescript: 5.6.3
+
   '@vue/shared@3.5.0': {}
 
   '@zeit/schemas@2.36.0': {}
@@ -7125,6 +7141,26 @@ snapshots:
       - rollup
       - supports-color
 
+  vite-plugin-dts@4.1.0(rollup@4.21.2)(typescript@5.6.3)(vite@5.4.10):
+    dependencies:
+      '@microsoft/api-extractor': 7.47.4
+      '@rollup/pluginutils': 5.1.0(rollup@4.21.2)
+      '@volar/typescript': 2.4.1
+      '@vue/language-core': 2.0.29(typescript@5.6.3)
+      compare-versions: 6.1.1
+      debug: 4.3.7
+      kolorist: 1.8.0
+      local-pkg: 0.5.0
+      magic-string: 0.30.11
+      typescript: 5.6.3
+      vue-tsc: 2.0.29(typescript@5.6.3)
+    optionalDependencies:
+      vite: 5.4.10
+    transitivePeerDependencies:
+      - '@types/node'
+      - rollup
+      - supports-color
+
   vite@5.4.10:
     dependencies:
       esbuild: 0.21.5
@@ -7153,6 +7189,13 @@ snapshots:
       '@vue/language-core': 2.0.29(typescript@5.5.4)
       semver: 7.6.3
       typescript: 5.5.4
+
+  vue-tsc@2.0.29(typescript@5.6.3):
+    dependencies:
+      '@volar/typescript': 2.4.1
+      '@vue/language-core': 2.0.29(typescript@5.6.3)
+      semver: 7.6.3
+      typescript: 5.6.3
 
   which-boxed-primitive@1.0.2:
     dependencies:
