@@ -57,7 +57,13 @@
 </div>
 
 <style>
-	.lb-text-red-700 {
-		color: #b91c1c; /* red-700 */
+	.lb-widget {
+		background-color: var(--lb-widget-bg);
+		border-radius: 15px;
+		padding: 20px;
+		width: 300px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		position: relative;
+		font-family: sans-serif;
 	}
 </style>

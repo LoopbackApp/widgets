@@ -38,3 +38,81 @@
 		powered by <a href="https://loopback.works" target="_blank">Loopback</a>
 	</div>
 {/if}
+
+<style>
+	.lb-close {
+		position: absolute;
+		top: 0;
+		right: 10px;
+		font-size: 24px;
+		color: #777;
+		border: none;
+		cursor: pointer;
+		max-width: fit-content;
+		background-color: transparent;
+		padding: 0;
+	}
+	.lb-close:hover {
+		background-color: transparent;
+	}
+
+	.lb-title {
+		color: var(--lb-title-color);
+		margin-top: 0;
+		margin-bottom: 10px;
+	}
+	.lb-description {
+		color: var(--lb-description-color);
+		font-size: 14px;
+		margin-bottom: 20px;
+	}
+	.lb-emoji-container {
+		display: flex;
+		justify-content: space-between;
+	}
+	.lb-form {
+		margin-top: 20px;
+	}
+	.lb-form input,
+	.lb-form textarea {
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 10px;
+		border: none;
+		border-radius: 5px;
+		background-color: #333;
+		color: var(--lb-input-color);
+	}
+	.lb-form input::placeholder,
+	.lb-form textarea::placeholder {
+		color: var(--lb-input-placeholder-color);
+	}
+	.lb-form textarea {
+		height: 80px;
+		resize: vertical;
+	}
+	.lb-btn-submit {
+		width: 100%;
+		padding: 10px;
+		border: none;
+		border-radius: 5px;
+		background-color: var(--lb-btn-submit-bg);
+		color: var(--lb-btn-submit-color);
+		font-weight: bold;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+	.lb-btn-submit:hover {
+		background-color: color-mix(in srgb, var(--lb-btn-submit-bg) 100%, white 20%);
+	}
+
+	.lb-powered-by {
+		text-align: center;
+		font-size: 12px;
+		color: #aaa;
+		margin-top: 10px;
+	}
+	.lb-powered-by a {
+		color: white;
+	}
+</style>
