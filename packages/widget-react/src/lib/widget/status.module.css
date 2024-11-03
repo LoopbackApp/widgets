@@ -22,12 +22,13 @@
 
 .headline {
 	font-weight: 600;
+	color: var(--lb-title-color);
 }
 
 .subheading {
 	font-size: 0.875rem;
 	line-height: 1.25rem;
-	color: rgb(63 63 70);
+	color: var(--lb-description-color);
 }
 
 @keyframes enter {
