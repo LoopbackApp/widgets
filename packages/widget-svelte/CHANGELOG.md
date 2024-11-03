@@ -1,5 +1,11 @@
 # @loopbackapp/widget-svelte
 
+## 0.6.0
+
+### Minor Changes
+
+- 4e79094: Move the widget CSS within the widget itself
+
 ## 0.5.0
 
 ### Minor Changes
