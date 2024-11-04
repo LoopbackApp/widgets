@@ -1,11 +1,5 @@
-export interface WidgetState {
-	selectedEmotion: number | null;
-	email: string | null;
-	note: string | null;
-	submitSuccess: boolean | null;
-}
+import { type FeedbackPayload } from '@loopbackapp/widget-shared';
 
-export interface FeedbackPayload extends WidgetState {
-	projectId: string;
-	origin: string;
-}
+export type FormState = Omit<FeedbackPayload, 'emotion'> & {
+	emotion: number | null;
+};
