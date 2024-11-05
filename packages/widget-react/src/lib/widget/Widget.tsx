@@ -1,7 +1,7 @@
+import { EmojiForm } from "./form";
 import { Status } from "./status";
 import { useStyles } from "./useStyles";
 import styles from "./widget.module.css";
-import { submitFeedback } from "./submit";
 
 export type LoopbackWidgetProps = {
 	/**
@@ -10,7 +10,6 @@ export type LoopbackWidgetProps = {
 	projectId: string;
 };
 export function Widget({ projectId }: LoopbackWidgetProps) {
-	console.log(submitFeedback);
 	const { isLoaded } = useStyles(projectId);
 
 	if (!isLoaded) return null;
@@ -19,6 +18,7 @@ export function Widget({ projectId }: LoopbackWidgetProps) {
 			<div className="lb-widget">
 				<div className={styles["widget"]}>
 					<Status type="success"></Status>
+					<EmojiForm />
 				</div>
 			</div>
 		</>
