@@ -25,6 +25,8 @@ processes:
       sed -i -E "s/data-project-id=\"[^\"]*\"/data-project-id=\"$PROJECT_ID\"/" packages/widget-js-script/index.html
       echo "  packages/widget-svelte/src/routes/+page.svelte"
       sed -i -E "s/<Widget projectId=\"[^\"]*\"/<Widget projectId=\"$PROJECT_ID\"/" packages/widget-svelte/src/routes/+page.svelte
+      echo "  packages/widget-react/src/App.tsx"
+      sed -i -E "s/<FeedbackWidget projectId=\"[^\"]*\"/<FeedbackWidget projectId=\"$PROJECT_ID\"/" packages/widget-react/src/App.tsx
       echo "Done"
   dev:
     namespace: dev
