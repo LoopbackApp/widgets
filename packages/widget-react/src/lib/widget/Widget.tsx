@@ -4,13 +4,13 @@ import { Status } from "./status";
 import { useStyles } from "./useStyles";
 import "./styles.css";
 
-export type LoopbackWidgetProps = {
+export type FeedbackWidgetProps = {
 	/**
 	 * The project ID of your loopback project
 	 */
 	projectId: string;
 };
-export function LoopbackWidget({ projectId }: LoopbackWidgetProps) {
+export function FeedbackWidget({ projectId }: FeedbackWidgetProps) {
 	const { isLoaded } = useStyles(projectId);
 	const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
 
