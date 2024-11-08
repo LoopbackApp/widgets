@@ -43,3 +43,19 @@ jobs:
         run: pnpm build && pnpm upload:prod
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - name: Purge Cloudflare cache for widget scripts
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          curl --request POST \
+            --url https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache \
+            --header 'Content-Type: application/json' \
+            --header 'X-Auth-Key: $CLOUDFLARE_PURGE_API_TOKEN' \
+            --data '{
+            "files": [
+              "https://widget.loopback.works/latest/loopback.js",
+              "https://widget.loopback.works/latest/ce.js"
+            ]
+          }'
+        env:
+          CLOUDFLARE_PURGE_ZONE_ID: ${{ secrets.CLOUDFLARE_PURGE_ZONE_ID }}
+          CLOUDFLARE_PURGE_API_TOKEN: ${{ secrets.CLOUDFLARE_PURGE_API_TOKEN }}
