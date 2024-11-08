@@ -1,50 +1,29 @@
-# React + TypeScript + Vite
+# @loopbackapp/widget-svelte
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Loopback's ([loopback.works](https://loopback.works)) React ([react.dev](https://react.dev)) widget.
 
-Currently, two official plugins are available:
+Use this if you work with React and would like to add the Loopback widget to your application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-	languageOptions: {
-		// other options...
-		parserOptions: {
-			project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-			tsconfigRootDir: import.meta.dirname,
-		},
-	},
-});
+```bash
+npm install -d @loopbackapp/widget-react
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Usage
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+Import and instantiate the Loopback widget:
 
-export default tseslint.config({
-	// Set the react version
-	settings: { react: { version: "18.3" } },
-	plugins: {
-		// Add the react plugin
-		react,
-	},
-	rules: {
-		// other rules...
-		// Enable its recommended rules
-		...react.configs.recommended.rules,
-		...react.configs["jsx-runtime"].rules,
-	},
-});
+```jsx
+import { FeedbackWidget } from "@loopbackapp/widget-react";
+
+<FeedbackWidget projectId="your-project-id" />;
 ```
+
+## Configuration
+
+You can configure the look & feel of the widget in your project dashboard on [dash.loopback.works](https://dash.loopback.works).
+
+## Contributing
+
+Please see [CONTRIBUTING](https://github.com/LoopbackApp/widgets/blob/main/packages/widget-react/CONTRIBUTING.md).

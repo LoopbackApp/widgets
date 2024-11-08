@@ -1,2 +1,1 @@
-import "../index.css";
-export { LoopbackWidget } from "./Widget/index";
+export * from "./widget/widget";
