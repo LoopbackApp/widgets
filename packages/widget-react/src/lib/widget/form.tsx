@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { Emotion } from "./emotions";
-import { submitFeedback } from "./submit";
+import { submitFeedback } from '@loopbackapp/widget-shared';
 
 const moods = Array.from({ length: 3 })
 	.fill(0)
@@ -22,13 +22,11 @@ export function EmojiForm({ submitStateHandler, projectId }: Props) {
 			const res = await submitFeedback({
 				emotion: selected,
 				note,
-				type: "feedback",
-				email,
-				origin: window.location.href,
+				email: email === "" ? undefined : email,
 				projectId,
 			});
 
-			submitStateHandler(res);
+			submitStateHandler(res.ok);
 		} catch (err) {
 			console.error("Failed to submit feedback:", err);
 			submitStateHandler(false);
@@ -52,7 +50,6 @@ export function EmojiForm({ submitStateHandler, projectId }: Props) {
 				{!!selected && (
 					<div className="lb-space-y-4">
 						<input
-							required
 							onChange={(e) => setEmail(e.target.value)}
 							className="lb-rounded-lg lb-text-loopback-input lb-w-full lb-bg-[#333] placeholder:lb-text-loopback-placeholder lb-p-3"
 							type="email"
