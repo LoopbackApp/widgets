@@ -8,7 +8,7 @@ export default defineConfig({
 			entry: ["src/lib/custom-element.svelte"],
 			formats: ["iife"],
 			fileName: () => "ce.js",
-			name: "LoopbackWidget",
+			name: "FeedbackWidget",
 		},
 	},
 	plugins: [
