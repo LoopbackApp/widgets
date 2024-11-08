@@ -1,4 +1,4 @@
-# @loopbackapp/widget-svelte
+# @loopbackapp/widget-react
 
 Loopback's ([loopback.works](https://loopback.works)) React ([react.dev](https://react.dev)) widget.
 
