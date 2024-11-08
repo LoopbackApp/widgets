@@ -10,7 +10,7 @@ export type LoopbackWidgetProps = {
 	 */
 	projectId: string;
 };
-export function Widget({ projectId }: LoopbackWidgetProps) {
+export function LoopbackWidget({ projectId }: LoopbackWidgetProps) {
 	const { isLoaded } = useStyles(projectId);
 	const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
 
