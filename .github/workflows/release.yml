@@ -47,7 +47,7 @@ jobs:
         if: steps.changesets.outputs.published == 'true'
         run: |
           curl --request POST \
-            --url https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache \
+            --url https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_PURGE_ZONE_ID/purge_cache \
             --header 'Content-Type: application/json' \
             --header 'X-Auth-Key: $CLOUDFLARE_PURGE_API_TOKEN' \
             --data '{
