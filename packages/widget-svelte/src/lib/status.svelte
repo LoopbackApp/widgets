@@ -36,7 +36,9 @@
 			/><path d="M12 6l-2 4l4 3l-2 4v3" /></svg
 		>
 	{/if}
-	<p class="lb-animate-in lb-font-semibold lb-duration-700 lb-fade-in lb-slide-in-from-bottom-4">
+	<p
+		class="lb-status-title lb-animate-in lb-font-semibold lb-duration-700 lb-fade-in lb-slide-in-from-bottom-4"
+	>
 		{#if type === 'success'}
 			Your feedback has been received
 		{:else if type === 'error'}
@@ -44,7 +46,7 @@
 		{/if}
 	</p>
 	<p
-		class="lb-animate-in lb-text-sm lb-text-neutral-600 lb-duration-700 lb-fade-in lb-slide-in-from-bottom-4"
+		class="lb-status-description lb-animate-in lb-text-sm lb-duration-700 lb-fade-in lb-slide-in-from-bottom-4"
 	>
 		{#if type === 'success'}
 			Thanks for submitting your feedback
@@ -55,6 +57,12 @@
 </div>
 
 <style>
+	.lb-status-title {
+		color: var(--lb-description-color);
+	}
+	.lb-status-description {
+		color: color-mix(in srgb, var(--lb-description-color), black 10%);
+	}
 	.lb-flex {
 		display: flex;
 	}
@@ -75,6 +83,9 @@
 	}
 	.lb-text-neutral-600 {
 		color: #525252;
+	}
+	.lb-text-red-700 {
+		color: #b91c1c;
 	}
 	.lb-font-semibold {
 		font-weight: 600;
