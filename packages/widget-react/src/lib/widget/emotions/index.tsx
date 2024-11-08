@@ -1,6 +1,5 @@
 import { ComponentType } from "react";
 import { EmojiProps, Five, Four, One, Three, Two } from "./emotions";
-import styles from "./emotion.module.css";
 
 type Props = {
 	selected: number;
@@ -23,7 +22,7 @@ export function Emotion({ emotionComponent, emotionValue, selected, onClick }: P
 	const isSelected = selected === emotionValue;
 	return (
 		<button
-			className={styles["button"]}
+			className="lb-flex lb-items-center lb-justify-center lb-bg-transparent lb-min-h-16 lb-min-w-16 lb-p-3 lb-group"
 			onClick={(e) => {
 				e.preventDefault();
 				onClick(emotionValue);
@@ -33,14 +32,3 @@ export function Emotion({ emotionComponent, emotionValue, selected, onClick }: P
 		</button>
 	);
 }
-
-//<button
-// 	class:selected
-// 	on:click|preventDefault={() => dispatch('click', emotionValue)}
-// >
-// 	<svelte:component
-// 		this={components[emotionComponent]}
-// 		{...$$restProps}
-// 		selected={selected === emotionValue}
-// 	/>
-// </button>

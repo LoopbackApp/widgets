@@ -1,16 +1,14 @@
-import styles from "./status.module.css";
-
 type Props = {
 	type: "success" | "error";
 };
 export function Status({ type }: Props) {
 	return (
-		<div className={styles["container"]}>
+		<div className="lb-font-semibold lb-fade-in lb-slide-in-from-bottom-4 lb-flex lb-gap-2 lb-flex-col lb-items-center lb-justify-center lb-animate-in lb-duration-1000 flex items-center">
 			{type === "success" ? <SuccessIcon /> : <ErrorIcon />}
-			<p className={styles["headline"]}>
+			<p className="lb-font-semibold lb-text-loopback-title">
 				{type === "success" ? "Your feedback has been received" : "Something went wrong..."}
 			</p>
-			<p className={styles["subheading"]}>
+			<p className="lb-text-sm lb-text-loopback-description">
 				{type === "success" ? "Thank you for your feedback!" : "Please try again later."}
 			</p>
 		</div>
@@ -20,7 +18,7 @@ export function Status({ type }: Props) {
 function SuccessIcon() {
 	return (
 		<svg
-			className={styles["icon"]}
+			className="lb-text-red-700"
 			xmlns="http://www.w3.org/2000/svg"
 			width="36"
 			height="36"
@@ -40,7 +38,7 @@ function SuccessIcon() {
 function ErrorIcon() {
 	return (
 		<svg
-			className={styles["icon"]}
+			className="lb-text-red-700"
 			xmlns="http://www.w3.org/2000/svg"
 			width="36"
 			height="36"

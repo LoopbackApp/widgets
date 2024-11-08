@@ -1,6 +1,5 @@
 import { FormEvent, useState } from "react";
 import { Emotion } from "./emotions";
-import styles from "./form.module.css";
 import { submitFeedback } from "./submit";
 
 const moods = Array.from({ length: 3 })
@@ -37,8 +36,8 @@ export function EmojiForm({ submitStateHandler, projectId }: Props) {
 	}
 	return (
 		<div>
-			<form onSubmit={handleFormSubmit} className={styles["form"]}>
-				<ul className={styles["list"]}>
+			<form onSubmit={handleFormSubmit}>
+				<ul className="lb-flex lb-items-center lb-justify-between">
 					{moods.map((mood) => (
 						<li key={mood}>
 							<Emotion
@@ -51,24 +50,32 @@ export function EmojiForm({ submitStateHandler, projectId }: Props) {
 					))}
 				</ul>
 				{!!selected && (
-					<div>
+					<div className="lb-space-y-4">
 						<input
+							required
 							onChange={(e) => setEmail(e.target.value)}
-							className={`${styles["input"]}`}
+							className="lb-rounded-lg lb-text-loopback-input lb-w-full lb-bg-[#333] placeholder:lb-text-loopback-placeholder lb-p-3"
 							type="email"
 							placeholder="Enter your email"
 						/>
 						<textarea
 							onChange={(e) => setNote(e.target.value)}
-							className={`${styles["input"]} ${styles["textarea"]}`}
+							className="lb-rounded-lg lb-text-loopback-input lb-w-full lb-bg-[#333] placeholder:lb-text-loopback-placeholder lb-p-3 lb-resize-y lb-min-h-[80px]"
 							placeholder="Add a comment"
 						></textarea>
-						<button className={styles["button"]} type="submit">
+						<button
+							className="lb-bg-loopback-submit lb-p-3 lb-rounded-md lb-w-full lb-text-loopback-submit-text"
+							type="submit"
+						>
 							Submit
 						</button>
-						<div className={styles["powered-by"]}>
+						<div className="lb-text-center lb-text-xs lb-text-[#aaa]">
 							powered by{" "}
-							<a style={{ color: "white" }} href="https://loopback.works" target="_blank">
+							<a
+								className="lb-underline hover:lb-decoration-transparent lb-transition-all lb-duration-200"
+								href="https://loopback.works"
+								target="_blank"
+							>
 								Loopback
 							</a>
 						</div>

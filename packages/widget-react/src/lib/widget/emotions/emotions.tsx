@@ -2,11 +2,14 @@ export type EmojiProps = {
 	selected: boolean;
 };
 
+const className = "lb-transition-all lb-duration-300 group-hover:lb-h-10 group-hover:lb-w-10";
+
 export function One({ selected }: EmojiProps) {
 	const fill = selected ? "#E7344F" : "#363A40";
 	const size = selected ? 40 : 32;
 	return (
 		<svg
+			className={className}
 			width={size}
 			height={size}
 			viewBox="0 0 32 32"
@@ -43,6 +46,7 @@ export function Two({ selected }: EmojiProps) {
 	const size = selected ? 40 : 32;
 	return (
 		<svg
+			className={className}
 			width={size}
 			height={size}
 			viewBox="0 0 32 32"
@@ -67,6 +71,7 @@ export function Three({ selected }: EmojiProps) {
 	const size = selected ? 40 : 32;
 	return (
 		<svg
+			className={className}
 			width={size}
 			height={size}
 			viewBox="0 0 32 32"
@@ -91,6 +96,7 @@ export function Four({ selected }: EmojiProps) {
 	const size = selected ? 40 : 32;
 	return (
 		<svg
+			className={className}
 			width={size}
 			height={size}
 			viewBox="0 0 32 32"
@@ -115,6 +121,7 @@ export function Five({ selected }: EmojiProps) {
 	const size = selected ? 40 : 32;
 	return (
 		<svg
+			className={className}
 			width={size}
 			height={size}
 			viewBox="0 0 32 32"
