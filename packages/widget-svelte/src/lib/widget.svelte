@@ -2,43 +2,52 @@
 	import { onMount } from 'svelte';
 	import Status from './status.svelte';
 	import { initializeStyles } from './styles';
-	import { submitFeedbackForm } from './api-helper';
+	import { submitFeedback } from '@loopbackapp/widget-shared';
 	import Form from './form.svelte';
-	import type { WidgetState } from './types';
+	import type { FormState } from './types.js';
 	export let projectId: string;
 
 	const MOODS = Array.from({ length: 3 })
 		.fill(0)
 		.map((_, index) => index + 1);
-	const WIDGET_RESET_DELAY_MS = 500000;
+	const WIDGET_RESET_DELAY_MS = 5000;
 
-	let state: WidgetState = {
-		selectedEmotion: null,
-		email: null,
-		note: null,
-		submitSuccess: null
+	let formState: FormState;
+	$: formState = {
+		emotion: null,
+		email: undefined,
+		note: undefined,
+		projectId
 	};
+	let submitSuccess: null | boolean;
+	$: submitSuccess = null;
 	let form: HTMLFormElement;
 
 	function resetForm() {
 		form.reset();
 		setTimeout(() => {
-			state = {
-				selectedEmotion: null,
-				email: null,
-				note: null,
-				submitSuccess: null
+			submitSuccess = null;
+			formState = {
+				emotion: null,
+				email: undefined,
+				note: undefined,
+				projectId
 			};
 		}, WIDGET_RESET_DELAY_MS);
 	}
 
 	async function handleSubmit() {
-		state.submitSuccess = await submitFeedbackForm({
-			...state,
-			projectId,
-			origin: window.location.href
-		});
-		resetForm();
+		try {
+			if (formState.emotion !== null) {
+				const response = await submitFeedback({ ...formState, emotion: formState.emotion });
+				resetForm();
+				submitSuccess = response.ok;
+			} else {
+				submitSuccess = false;
+			}
+		} catch {
+			submitSuccess = false;
+		}
 	}
 
 	onMount(() => {
@@ -47,12 +56,12 @@
 </script>
 
 <div class="lb-widget" part="widget">
-	{#if state.submitSuccess === true}
+	{#if submitSuccess === true}
 		<Status type="success" />
-	{:else if state.submitSuccess === false}
+	{:else if submitSuccess === false}
 		<Status type="error" />
 	{:else}
-		<Form {MOODS} bind:state on:submit={handleSubmit} bind:form />
+		<Form {MOODS} bind:formState on:submit={handleSubmit} bind:form />
 	{/if}
 </div>
 
