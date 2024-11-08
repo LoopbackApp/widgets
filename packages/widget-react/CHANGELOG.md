@@ -1,5 +1,11 @@
 # @loopbackapp/widget-react
 
+## 0.2.0
+
+### Minor Changes
+
+- cce0f5e: rewrite widget to use customization
+
 ## 0.1.1
 
 ### Patch Changes
