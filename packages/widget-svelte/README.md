@@ -1,4 +1,4 @@
-# @loopbackapp/svelte
+# @loopbackapp/widget-svelte
 
 Loopback's ([loopback.works](https://loopback.works)) Svelte ([svelte.dev](https://svelte.dev)) widget.
 
@@ -7,7 +7,7 @@ Use this if you work with Svelte and would like to add the Loopback widget to yo
 ## Installation
 
 ```bash
-npm install -d @loopbackapp/svelte
+npm install -d @loopbackapp/widget-svelte
 ```
 
 ## Usage
