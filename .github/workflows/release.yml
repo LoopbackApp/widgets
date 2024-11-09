@@ -48,8 +48,8 @@ jobs:
         run: |
           curl --request POST \
             --url https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_PURGE_ZONE_ID/purge_cache \
-            --header 'Content-Type: application/json' \
-            --header 'X-Auth-Key: $CLOUDFLARE_PURGE_API_TOKEN' \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer $CLOUDFLARE_PURGE_API_TOKEN" \
             --data '{
             "files": [
               "https://widget.loopback.works/latest/loopback.js",
