@@ -81,9 +81,6 @@
 	.lb-text-sm {
 		font-size: 0.875rem;
 	}
-	.lb-text-neutral-600 {
-		color: #525252;
-	}
 	.lb-text-red-700 {
 		color: #b91c1c;
 	}
