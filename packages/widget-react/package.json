@@ -12,7 +12,8 @@
 		"build": "pnpm clean && tsc -b && vite build",
 		"dev": "vite --port 5174",
 		"lint": "eslint .",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"prepublishOnly": "pnpm build"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.13.0",
