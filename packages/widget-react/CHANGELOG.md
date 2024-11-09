@@ -1,5 +1,11 @@
 # @loopbackapp/widget-react
 
+## 0.3.1
+
+### Patch Changes
+
+- 736a341: Add a prepublishOnly script to widget-react
+
 ## 0.3.0
 
 ### Minor Changes

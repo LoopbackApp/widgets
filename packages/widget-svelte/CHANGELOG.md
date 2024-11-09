@@ -1,5 +1,11 @@
 # @loopbackapp/widget-svelte
 
+## 0.7.1
+
+### Patch Changes
+
+- 736a341: Add a prepublishOnly script to widget-react
+
 ## 0.7.0
 
 ### Minor Changes
