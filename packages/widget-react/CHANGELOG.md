@@ -1,5 +1,11 @@
 # @loopbackapp/widget-react
 
+## 0.3.0
+
+### Minor Changes
+
+- 0550f7e: Fix a build error that prevented the source files from being published to NPM.
+
 ## 0.2.0
 
 ### Minor Changes
