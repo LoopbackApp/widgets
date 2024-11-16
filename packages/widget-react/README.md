@@ -7,7 +7,7 @@ Use this if you work with React and would like to add the Loopback widget to you
 ## Installation
 
 ```bash
-npm install -d @loopbackapp/widget-react
+npm install -S @loopbackapp/widget-react
 ```
 
 ## Usage
