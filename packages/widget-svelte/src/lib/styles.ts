@@ -1,7 +1,9 @@
-export function initializeStyles(projectId: string): void {
+import { getCurrentURL } from '@loopbackapp/widget-shared';
+
+export async function initializeStyles(projectId: string) {
 	const isInShadowDOM = checkIfInShadowDOM();
-	const host = getHostUrl();
-	const styleLink = createStyleLink(projectId, host);
+	const host = await getHostUrl();
+	const styleLink = await createStyleLink(projectId, host);
 
 	if (isInShadowDOM) {
 		appendToShadowRoot(styleLink);
@@ -24,14 +26,15 @@ function checkIfInShadowDOM(): boolean {
 	return false;
 }
 
-function getHostUrl(): string {
-	const search = window.location.search;
-	const isLoopbackDev = search?.includes('loopback-widget-dev');
+async function getHostUrl() {
+	const currentUrl = await getCurrentURL();
+	const isLoopbackDev = currentUrl.searchParams.has('loopback-widget-dev');
 	return isLoopbackDev ? 'http://localhost:5173' : 'https://dash.loopback.works';
 }
 
-function createStyleLink(projectId: string, host: string): HTMLLinkElement {
-	const isLoopbackDraft = window.location.search?.includes('loopback-widget-draft');
+async function createStyleLink(projectId: string, host: string) {
+	const currentUrl = await getCurrentURL();
+	const isLoopbackDraft = currentUrl.searchParams.has('loopback-widget-draft');
 	const link = document.createElement('link');
 	link.rel = 'stylesheet';
 	link.type = 'text/css';
