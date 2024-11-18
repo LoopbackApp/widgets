@@ -1,6 +1,7 @@
 {
-	"name": "widget-chrome",
+	"name": "@loopbackapp/widget-chrome",
 	"version": "0.0.1",
+	"private": true,
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev --port 5177",
