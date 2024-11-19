@@ -16,6 +16,7 @@ Import and instantiate the Loopback widget:
 
 ```jsx
 import { FeedbackWidget } from "@loopbackapp/widget-react";
+import "@loopbackapp/widget-react/dist/style.css";
 
 <FeedbackWidget projectId="your-project-id" />;
 ```
