@@ -1,5 +1,11 @@
 # @loopbackapp/widget-react
 
+## 0.4.0
+
+### Minor Changes
+
+- b139526: Fix an issue where widget-svelte didn't load widget-shared code correctly
+
 ## 0.3.1
 
 ### Patch Changes
