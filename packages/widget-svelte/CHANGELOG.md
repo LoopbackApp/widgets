@@ -1,5 +1,11 @@
 # @loopbackapp/widget-svelte
 
+## 0.8.0
+
+### Minor Changes
+
+- da4dfb5: Introduce widget-chrome
+
 ## 0.7.1
 
 ### Patch Changes
