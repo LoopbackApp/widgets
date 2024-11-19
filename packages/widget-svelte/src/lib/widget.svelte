@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import Status from './status.svelte';
 	import { initializeStyles } from './styles';
 	import { submitFeedback } from '@loopbackapp/widget-shared';
 	import Form from './form.svelte';
 	import type { FormState } from './types.js';
+
 	export let projectId: string;
 
 	const MOODS = Array.from({ length: 3 })
@@ -50,9 +50,9 @@
 		}
 	}
 
-	onMount(() => {
-		initializeStyles(projectId);
-	});
+	// We make this reactive so that we load the correct styles when someone
+	// changes the project in the browser extension
+	$: if (typeof document !== 'undefined') initializeStyles(projectId);
 </script>
 
 <div class="lb-widget" part="widget">
