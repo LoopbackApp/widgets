@@ -1,6 +1,6 @@
 {
 	"name": "@loopbackapp/widget-svelte",
-	"version": "0.8.0",
+	"version": "0.9.0",
 	"scripts": {
 		"clean": "rm -fr ./dist",
 		"dev": "vite dev --port 5175",

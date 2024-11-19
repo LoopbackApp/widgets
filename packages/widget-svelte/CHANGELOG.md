@@ -1,5 +1,11 @@
 # @loopbackapp/widget-svelte
 
+## 0.9.0
+
+### Minor Changes
+
+- b139526: Fix an issue where widget-svelte didn't load widget-shared code correctly
+
 ## 0.8.0
 
 ### Minor Changes
