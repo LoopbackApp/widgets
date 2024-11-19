@@ -1,5 +1,11 @@
 # @loopbackapp/widget-shared
 
+## 0.2.0
+
+### Minor Changes
+
+- da4dfb5: Introduce widget-chrome
+
 ## 0.1.0
 
 ### Minor Changes
