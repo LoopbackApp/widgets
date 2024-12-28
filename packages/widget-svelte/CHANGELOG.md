@@ -1,5 +1,11 @@
 # @loopbackapp/widget-svelte
 
+## 0.10.0
+
+### Minor Changes
+
+- 1862d4c: Migrate the API to loopback.works
+
 ## 0.9.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @loopbackapp/widget-shared
 
+## 0.4.0
+
+### Minor Changes
+
+- 1862d4c: Migrate the API to loopback.works
+
 ## 0.3.0
 
 ### Minor Changes
