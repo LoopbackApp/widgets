@@ -24,7 +24,7 @@ Import and instantiate the Loopback widget:
 
 ## Configuration
 
-You can configure the look & feel of the widget in your project dashboard on [dash.loopback.works](https://dash.loopback.works).
+You can configure the look & feel of the widget in your project dashboard on [loopback.works](https://loopback.works).
 
 ## Contributing
 
