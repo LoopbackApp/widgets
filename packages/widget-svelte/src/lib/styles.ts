@@ -29,7 +29,7 @@ function checkIfInShadowDOM(): boolean {
 async function getHostUrl() {
 	const currentUrl = await getCurrentURL();
 	const isLoopbackDev = currentUrl.searchParams.has('loopback-widget-dev');
-	return isLoopbackDev ? 'http://localhost:5173' : 'https://dash.loopback.works';
+	return isLoopbackDev ? 'http://localhost:5173' : 'https://loopback.works';
 }
 
 async function createStyleLink(projectId: string, host: string) {

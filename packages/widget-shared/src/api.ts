@@ -34,7 +34,7 @@ export async function submitFeedback(feedback: FeedbackPayload): Promise<Respons
 
 	const baseUrl = currentURL.searchParams.has("loopback-widget-dev")
 		? "http://localhost:5173"
-		: "https://dash.loopback.works";
+		: "https://loopback.works";
 
 	const res = await fetch(`${baseUrl}/api/feedback`, {
 		method: "POST",
