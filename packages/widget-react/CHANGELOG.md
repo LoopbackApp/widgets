@@ -1,5 +1,11 @@
 # @loopbackapp/widget-react
 
+## 0.5.1
+
+### Patch Changes
+
+- 43dd3ba: Load the widget CSS from the new /app subdirectory
+
 ## 0.5.0
 
 ### Minor Changes

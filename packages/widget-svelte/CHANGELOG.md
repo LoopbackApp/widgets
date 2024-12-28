@@ -1,5 +1,11 @@
 # @loopbackapp/widget-svelte
 
+## 0.10.1
+
+### Patch Changes
+
+- 43dd3ba: Load the widget CSS from the new /app subdirectory
+
 ## 0.10.0
 
 ### Minor Changes
