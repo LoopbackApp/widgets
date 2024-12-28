@@ -31,5 +31,5 @@ function getHref(projectId: string) {
 	const searchParams = new URLSearchParams(window.location.search);
 	const isLoopbackDraft = searchParams.has("loopback-widget-draft");
 	const host = getHost(searchParams);
-	return `${host}/projects/${projectId}/widget/css${isLoopbackDraft ? "?loopback-widget-draft" : ""}`;
+	return `${host}/app/projects/${projectId}/widget/css${isLoopbackDraft ? "?loopback-widget-draft" : ""}`;
 }
