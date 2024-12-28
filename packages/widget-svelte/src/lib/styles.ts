@@ -38,7 +38,7 @@ async function createStyleLink(projectId: string, host: string) {
 	const link = document.createElement('link');
 	link.rel = 'stylesheet';
 	link.type = 'text/css';
-	link.href = `${host}/projects/${projectId}/widget/css${isLoopbackDraft ? '?loopback-widget-draft' : ''}`;
+	link.href = `${host}/app/projects/${projectId}/widget/css${isLoopbackDraft ? '?loopback-widget-draft' : ''}`;
 	return link;
 }
 
